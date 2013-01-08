@@ -46,19 +46,22 @@ public class JugadorBueno extends Jugador implements IOnAreaTouchListener {
 	}
 	
 	
-/*	@Override
+	@Override
 	protected void onManagedUpdate(float pSecondsElapsed) {	
 		super.onManagedUpdate(pSecondsElapsed);
 		
-			this.setG_vida(this.getG_vida()-10);
 		
-		if (this.getG_vida() <= 0 ) {
-			
-			this.stopAnimation();
-			
+		if (g_sangrando) {
+			this.setG_vida(this.getG_vida()-1);
+
+			if (this.getG_vida() <= 0 ) {
+
+				this.stopAnimation();
+
+			}
 		}
 				
-	};*/
+	};
 	
 
 	@Override

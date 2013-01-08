@@ -160,7 +160,7 @@ public class InfectionV1Activity extends SimpleBaseGameActivity implements
 		JugadorMalo malo = new JugadorMalo(5, 5, this.mMaloTextureRegion,
 				this.getVertexBufferObjectManager(), this.mPhysicsWorld,
 				this.mScene);
-		anyadeBuenos(0);
+		anyadeBuenos(10);
 
 		return this.mScene;
 	}
@@ -288,28 +288,44 @@ public class InfectionV1Activity extends SimpleBaseGameActivity implements
 			@Override
 			public void beginContact(Contact contact) {
 				
+				
+				
+				
 				final Fixture x1 = contact.getFixtureA();
 				final Fixture x2 = contact.getFixtureB();
 				
 				final Body b1 = x1.getBody();
 				final Body b2 = x2.getBody();
 				
-				final Jugador j1 = (Jugador) b1.getUserData();
-				final Jugador j2 = (Jugador) b2.getUserData();
 				
-				if (b1.getUserData().getClass().getName() == "Jugador") {
-				
-					if ((j1.getEtiqueta().equals("BUENO")) && 
-						(j2.getEtiqueta().equals("MALO"))) {
+				if ((b1.getUserData().getClass() != String.class) && (b2.getUserData().getClass() != String.class)){
+					
+					    
+					if (b1.getUserData().getClass() == JugadorBueno.class) {
+						if (b2.getUserData().getClass() == JugadorMalo.class) {
+							((JugadorBueno)b1.getUserData()).setG_sangrando(true);	
+						}
+						
+						
+					}
+					
+					if (b2.getUserData().getClass() == JugadorBueno.class) {
+						if (b1.getUserData().getClass() == JugadorMalo.class) {
+							((JugadorBueno)b2.getUserData()).setG_sangrando(true);	
+						}
+						
+						
+					}
 
+						
 							// TODO: Combinar Sprite Bueno y malo
 							// Quitar vida al Bueno, si la vida del bueno termina
 							// convertir en malo
 							//((JugadorBueno)j1).setG_sangrando(true);
-							
 
-						}
-					
+
+						
+
 				}
 								
 			}
